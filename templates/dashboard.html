@@ -1,0 +1,124 @@
+{{define "body"}}
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <h1 class="page-header">
+        Dashboard
+    </h1>
+    <h6 ALIGN="center">Dear Visitor,
+        <br>great to see you. You are interested to improve the information security in your environment.
+        <br>Phishing-attacks are the most common assaults in the last years.
+        <br>With the password-fish framework you have made the best decision to reduce the risks of phishing-attacks. It will integrate your employees in an information security awareness measurement and achieve a good understanding after completing the trainings.</h6>
+        <h6 ALIGN="center">Familiarize yourself with the phishing environment.
+        <br>There is one phishing campaign prepared to you. You only need to give your email address in the menue "Recipients", to receive the results. Afterwards you have to start the campaign in the menue "Campaign" or you can start easily with the button "Start".
+        <br><br> <a href="/groups"><button type="button" id="launchButton" class="btn btn-primary" onclick="launch()">
+            <i class="fa fa-rocket"></i> START </button></a>
+    <P></P></h6>
+    <div id="loading">
+        <i class="fa fa-spinner fa-spin fa-4x"></i>
+    </div>
+    {{template "flashes" .Flashes}}
+    <div id="emptyMessage" style="display:none;">
+        <div class="alert alert-info">
+            No campaigns created yet. Let's create one!
+        </div>
+    </div>
+    <div id="dashboard" style="display:none;">
+        <div class="row">
+            <div id="overview_chart" style="height:200px;" class="col-lg-12 col-md-12 col-sm-12 col-xs-12"></div>
+        </div>
+        <div class="row">
+            <div style="height:200px;" class="col-lg-1 col-md-1"></div>
+            <div id="sent_chart" style="height:200px;" class="col-lg-2 col-md-2"></div>
+            <div id="opened_chart" style="height:200px;" class="col-lg-2 col-md-2"></div>
+            <div id="clicked_chart" style="height:200px;" class="col-lg-2 col-md-2"></div>
+            <div id="submitted_data_chart" style="height:200px;" class="col-lg-2 col-md-2"></div>
+            <div id="email_reported_chart" style="height:200px;" class="col-lg-2 col-md-2"></div>
+            <div style="height:200px;" class="col-lg-1 col-md-1"></div>
+        </div>
+        <div class="row">
+            <h2>Recent Campaigns</h2>
+        </div>
+        <div class="row">
+            <a href="/campaigns">
+                <button type="button" class="btn btn-primary">View All</button>
+            </a>
+        </div>
+        &nbsp;&nbsp;
+        <div class="row">
+            <table id="campaignTable" class="table">
+                <thead>
+                    <tr>
+                        <th class="col-md-2 col-sm-2">Name</th>
+                        <th class="col-md-2 col-sm-2">Created Date</th>
+                        <th class="col-md-1 col-sm-1">
+                            <i class="fa fa-envelope-o"></i>
+                        </th>
+                        <th class="col-md-1 col-sm-1">
+                            <i class="fa fa-envelope-open-o"></i>
+                        </th>
+                        <th class="col-md-1 col-sm-1">
+                            <i class="fa fa-mouse-pointer"></i>
+                        </th>
+                        <th class="col-md-1 col-sm-1">
+                            <i class="fa fa-exclamation-circle"></i>
+                        </th>
+                        <th class="col-md-1 col-sm-1">
+                            <i class="fa fa-bullhorn"></i>
+                        </th>
+                        <th class="col-md-1 col-sm-1">Status</th>
+                        <th class="col-md-2 col-sm-2 no-sort"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade modal-md" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="dismiss()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <center><h4 class="modal-title center" id="campaignModalLabel">Welcome To Smart Cyber!</h4></center>
+            </div>
+            <div class="modal-body" id="modal_body">
+                <label for="info"><b>Smart Cyber </b>is a phishing application that makes it easy to test your organization's exposure to phishing.</label>
+                <label for="info" style="background-color:cornsilk">
+                    As a visitor, you have the privilege to test the application by creating a campaign. 
+                    The first step is you need to provide your own details with your own email address as a recipient/target. 
+                    You don't need to set the Email Template, Landing Pages, and Sending Profile as these feature has been predefined just for you. 
+                    You may also view each pages and navigate through forms for actual process of a premium user.
+                </label>
+                <br>
+               <br/><b>PAGE INFORMATION SECTION:</b>
+               <br><b>Dashboard</b> shows a graphical illustration for the Phishing Success Overview of a campaign.
+               <br><b>Campaigns</b> this involves sending emails to recipient and monitoring for opened emails, clicked links, or submitted credentials.
+               <br><b>Recipients</b> is where you add your own email address.
+               <br><b>Email Templates</b> is the content of the emails that are sent to targets. They can be imported from an existing email, or created from scratch. They also support sending attachments.
+               <br><b>Landing Pages</b> are the actual HTML pages that are returned to the users when they click the phishing links they receive.
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="dismiss()">Close</button>
+                <a href="/groups"><button type="button" id="launchButton" class="btn btn-primary" onclick="launch()">
+                    <i class="fa fa-rocket"></i> Click here to set your own Email Address</button></a>
+            </div>
+        </div>
+    </div>
+</div>
+{{end}} {{define "scripts"}}
+<script src="/js/dist/app/dashboard.min.js"></script>
+<script type="text/javascript">
+    window.onload = function(){
+        // if($('#campaignTable tbody').find('tr').length != 0){
+        //     $("#modal").modal('hide');
+        // }
+        // else{
+        //     $("#modal").modal('show');
+        // }
+    }
+</script>
+{{end}}

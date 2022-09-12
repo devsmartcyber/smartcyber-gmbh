@@ -1,0 +1,67 @@
+{{ define "base" }}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gophish - Open-Source Phishing Toolkit">
+    <meta name="author" content="Jordan Wright (http://github.com/jordan-wright)">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+
+    <title>Smart Cyber - {{ .Title }}</title>
+
+    <link href="/css/dist/gophish.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600,700' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- <img class="navbar-logo" src="/images/logo_inv_small.png" /> -->
+                <img class="navbar-logo" src="/images/SmartCyber.png" HEIGHT="40" />
+                <a class="navbar-brand" href="/">&nbsp;SmartCyber GmbH</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                   
+                </ul>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <img id="logo" src="/images/Angler.png" HEIGHT="200" />
+    <h3 align="center">password-fisher</h3>
+    <h6 ALIGN="center">Welcome to the fisher-plattform, to fish passwords and other credentials.
+        <br/>This is a plattform to build easily your own phishing campaign within your own administrative environment and let the exploited users visit some training sessions.</h6>
+        <h6 ALIGN="center">If you not yet have an acount and want to test, please press "Test-Campaign"-Button.
+    <br/>You will get a first impression into the patform to manage your campaigns and be able to define a recipient email, to check the results of a campaign.</h6>
+    <div class="container">
+        <form class="form-signin" action="" method="POST">
+            <input type="hidden" name="username" value="visitor" />
+            <input type="hidden" name="password" value="8uda3LtQ8AOa" />
+            <input type="hidden" name="csrf_token" value="{{.Token}}" />
+            <button class="btn btn-block btn-primary" type="submit">Test-Campaign</button>
+        </form>
+        <form class="form-signin" action="" method="POST">
+            <h5 class="form-signin-heading">If you have an Account, Please sign in</h2>
+            <input type="text" name="username" class="form-control top-input" placeholder="Username" required autofocus>
+            <input type="password" name="password" class="form-control bottom-input" placeholder="Password" autocomplete="off" required>
+            <input type="hidden" name="csrf_token" value="{{.Token}}" />
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </form>
+    </div>
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/js/dist/vendor.min.js"></script>
+</body>
+
+</html>
+{{ end }}
