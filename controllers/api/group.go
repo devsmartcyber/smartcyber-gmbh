@@ -70,7 +70,7 @@ func (as *Server) Group(w http.ResponseWriter, r *http.Request) {
 	id, _ := strconv.ParseInt(vars["id"], 0, 64)
 	g, err := models.GetGroup(id, ctx.Get(r, "user_id").(int64))
 	if err != nil {
-		JSONResponse(w, models.Response{Success: false, Message: "Group not found"}, http.StatusNotFound)
+		JSONResponse(w, models.Response{Success: false, Message: "Recipient not found"}, http.StatusNotFound)
 		return
 	}
 	switch {
@@ -115,7 +115,7 @@ func (as *Server) GroupSummary(w http.ResponseWriter, r *http.Request) {
 		id, _ := strconv.ParseInt(vars["id"], 0, 64)
 		g, err := models.GetGroupSummary(id, ctx.Get(r, "user_id").(int64))
 		if err != nil {
-			JSONResponse(w, models.Response{Success: false, Message: "Group not found"}, http.StatusNotFound)
+			JSONResponse(w, models.Response{Success: false, Message: "Recipient not found"}, http.StatusNotFound)
 			return
 		}
 		JSONResponse(w, g, http.StatusOK)
