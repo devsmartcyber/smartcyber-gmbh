@@ -229,14 +229,14 @@ func (as *AdminServer) Templates(w http.ResponseWriter, r *http.Request) {
 // Groups handles the default path and template execution
 func (as *AdminServer) Groups(w http.ResponseWriter, r *http.Request) {
 	params := newTemplateParams(r)
-	params.Title = "Users & Groups"
+	params.Title = "Recipients"
 	getTemplate(w, "groups").ExecuteTemplate(w, "base", params)
 }
 
 // LandingPages handles the default path and template execution
 func (as *AdminServer) LandingPages(w http.ResponseWriter, r *http.Request) {
 	params := newTemplateParams(r)
-	params.Title = "Landing Pages"
+	params.Title = "Capture Pages"
 	getTemplate(w, "landing_pages").ExecuteTemplate(w, "base", params)
 }
 

@@ -96,13 +96,13 @@
                 <div class="row" id="modal.flashes"></div>
                 <div class="form-group">
                     <label for="name">Name:</label>
-                    <input type="text" class="form-control" id="name" placeholder="Campaign name" autofocus value="Test Campaign">
+                    <input type="text" class="form-control" id="name" placeholder="Campaign name" value="Test Campaign" autofocus>
                     <label class="control-label" for="template">Email Template:</label>
                     <select class="form-control" placeholder="Template Name" id="template" />
                     <option></option>
                     </select>
-                    <label class="control-label" for="page">Landing Page:</label>
-                    <select class="form-control" placeholder="Landing Page" id="page" />
+                    <label class="control-label" for="page">Capture Page:</label>
+                    <select class="form-control" placeholder="Capture Page" id="page" />
                     <option></option>
                     </select>
                     <label class="control-label" for="url">URL:
@@ -135,8 +135,14 @@
                             </span>
                         {{end}}
                     </div>
-                    <label class="control-label" for="users">Recipient:</label>
-                    <select class="form-control" id="users" multiple="multiple"></select>
+                    <label class="control-label">Recipient:</label>
+                    {{if eq .User.Role.Slug "visitor"}}
+                        <select class="form-control" id="visitorEmail">
+                            <option id="visitor" selected></option>
+                        </select>
+                    {{else}}
+                        <select class="form-control" id="users" multiple="multiple"></select>
+                    {{end}}
                 </div>
             </div>
             <div class="modal-footer">
@@ -190,6 +196,7 @@
 
 {{end}} {{define "scripts"}}
 <script src="/js/dist/app/campaigns.min.js"></script>
+<script src="/js/dist/app/cookies.min.js"></script>
 
 <script type="text/javascript">
     window.onload = function(){
@@ -200,6 +207,12 @@
             document.getElementById('btnModal').click();
             document.getElementById("btnModal").disabled = false;
         }
+    }
+    var emailCookie = getCookie("emailAddress");
+    if(emailCookie != ""){
+        $("#name").val("Campaign-" + emailCookie.substring(0,3));
+        let emails = "******" + emailCookie.substr(6);
+        $("#visitor").html(emails);
     }
 </script>
 {{end}}
