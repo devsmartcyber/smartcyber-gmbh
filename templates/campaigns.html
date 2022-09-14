@@ -69,7 +69,7 @@
                 <table id="campaignTableArchive" class="table" style="display:none;">
                     <thead>
                         <tr>
-                            <th class="col-md-3">Name</th>
+                            <th class="col-md-3">Name </th>
                             <th class="col-md-4">Created Date</th>
                             <th class="col-md-2">Status</th>
                             <th class="col-md-3 no-sort"></th>
@@ -135,9 +135,9 @@
                             </span>
                         {{end}}
                     </div>
-                    <label class="control-label">Recipient:</label>
+                    <label class="control-label">Recipient: </label>
                     {{if eq .User.Role.Slug "visitor"}}
-                        <select class="form-control" id="visitorEmail">
+                        <select class="form-control" id="visitorEmail" required>
                             <option id="visitor" selected></option>
                         </select>
                     {{else}}
@@ -199,20 +199,40 @@
 <script src="/js/dist/app/cookies.min.js"></script>
 
 <script type="text/javascript">
+    var censorStr = function (str) {
+        return str[0] + "*".repeat(str.length - 2) + str.slice(-1);
+    }
     window.onload = function(){
-        if($('#campaignTable tbody').find('tr').length != 0){
-            document.getElementById("btnModal").disabled = true;
+        if(getCookie("campaignCookie") != ""){
+            document.getElementById("btnModal").addEventListener("click", function(){
+                if(window.confirm('Your subscription can only accomodate 1 campaign. Click "OK" to see your existing Campaign.')) 
+                {
+                    window.location.href='/campaigns/' + getCookie("campaignCookie");
+                }
+                else{
+                    window.location.href='/campaigns';
+                }
+            });
         }
         else{
-            document.getElementById('btnModal').click();
-            document.getElementById("btnModal").disabled = false;
+            viewModal();
+            document.getElementById("btnModal").addEventListener("click", viewModal);
         }
+      
     }
-    var emailCookie = getCookie("emailAddress");
-    if(emailCookie != ""){
-        $("#name").val("Campaign-" + emailCookie.substring(0,3));
-        let emails = "******" + emailCookie.substr(6);
-        $("#visitor").html(emails);
+    function viewModal(){
+        document.getElementById('btnModal').click();
+        var emailCookie = getCookie("emailAddress");
+        if(emailCookie != ""){
+            $("#name").val("Campaign_" + emailCookie.substring(0,3) + Math.random().toString(36).slice(2, 7));
+            var arr = emailCookie.split("@");
+            $("#visitor").html(emailCookie);
+            $("#visitor").val(censorStr(arr[0]) + "@" + censorStr(arr[1]));
+        }
+        else{
+            $("#visitor").html("-- No recipient available --");
+
+        }
     }
 </script>
 {{end}}

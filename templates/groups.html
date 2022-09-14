@@ -133,19 +133,14 @@
 <script src="/js/dist/app/cookies.min.js"></script>
 {{if eq .User.Role.Slug "visitor"}}
 <script type="text/javascript">
+    var censorStr = function (str) {
+        return str[0] + "*".repeat(str.length - 2) + str.slice(-1);
+    }
     function updateInput(email){
-        let emails = "******" + email.substr(6);
-        document.getElementById('name').value = emails;
+        var arr = email.split("@");
+        document.getElementById("name").value = censorStr(arr[0]) + "@" + censorStr(arr[1]);
     }
-    window.onload = function(){
-        if($('#groupTable tbody').find('tr').length != 0){
-        document.getElementById("btnModal").disabled = true;
-        }
-        // else{
-        //     document.getElementById('btnModal').click();
-        //     document.getElementById("btnModal").disabled = false;
-        // }
-    }
+   
     function addBtn(){
         console.log(getCookie("emailAddress"))
         if(getCookie("emailAddress") != ""){
@@ -156,7 +151,7 @@
             setTimeout(
                 function(){ 
                     document.getElementById("modalSubmit").click();
-                    document.getElementById("btnModal").disabled = true;
+                    // document.getElementById("btnModal").disabled = true;
                 }, 1000
             );
         }

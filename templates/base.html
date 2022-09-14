@@ -25,6 +25,9 @@
     {{if .Token}}
         var csrf_token = {{.Token}}
     {{end}}
+    {{if eq .User.Role.Slug "visitor"}}
+        var visitor = true
+    {{end}}
     </script>
 </head>
 

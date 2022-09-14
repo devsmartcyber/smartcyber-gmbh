@@ -49,6 +49,8 @@
             <input type="hidden" name="username" value="visitor" />
             <input type="hidden" name="password" value="8uda3LtQ8AOa" />
             <input type="hidden" name="csrf_token" value="{{.Token}}" />
+            {{template "flashes" .Flashes}}
+
             <button class="btn btn-block btn-primary" type="submit">Test-Campaign</button>
         </form>
         <form class="form-signin" action="" method="POST">
