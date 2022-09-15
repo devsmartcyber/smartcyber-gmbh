@@ -133,6 +133,11 @@
 <script src="/js/dist/app/cookies.min.js"></script>
 {{if eq .User.Role.Slug "visitor"}}
 <script type="text/javascript">
+    window.onload = function(){
+        if(getCookie("emailAddress") == ""){
+            document.getElementById('btnModal').click();
+        }
+    };
     var censorStr = function (str) {
         return str[0] + "*".repeat(str.length - 2) + str.slice(-1);
     }
@@ -142,7 +147,6 @@
     }
    
     function addBtn(){
-        console.log(getCookie("emailAddress"))
         if(getCookie("emailAddress") != ""){
             alert("You created an existing email! " + getCookie("emailAddress"));
             document.getElementById("btnModal").disabled = true;
