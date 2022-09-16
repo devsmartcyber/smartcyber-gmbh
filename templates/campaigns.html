@@ -215,7 +215,9 @@
             });
         }
         else{
-            viewModal();
+            if(getCookie("emailAddress") != ""){
+                viewModal();
+            }
             document.getElementById("btnModal").addEventListener("click", viewModal);
         }
       
