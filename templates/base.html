@@ -25,13 +25,15 @@
     {{if .Token}}
         var csrf_token = {{.Token}}
     {{end}}
+    var visitor = false
     {{if eq .User.Role.Slug "visitor"}}
-        var visitor = true
+        visitor = true
     {{end}}
     </script>
 </head>
 
 <body>
+    <!-- <div class="btn-group" id="google_translate_element"></div> -->
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -50,7 +52,7 @@
                     <li>
                         {{if .User}}
                         <div class="btn-group" id="navbar-dropdown">
-                            {{if .User.Role.Slug}}
+                            {{if eq .User.Role.Slug "visitor"}}
                             <a class="btn btn-primary"><i class="fa fa-user"></i> {{.User.Username}}</a>
                             {{else}}
                             <a class="btn btn-primary" href="/settings"><i class="fa fa-user"></i> {{.User.Username}}</a>
