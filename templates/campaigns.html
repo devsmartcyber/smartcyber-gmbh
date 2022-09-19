@@ -108,7 +108,7 @@
                     <label class="control-label" for="url">URL:
                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="right" title="Location of Gophish listener (must be reachable by targets!)"></i>
                     </label>
-                    <input type="text" class="form-control" placeholder="http://192.168.1.1" id="url" />
+                    <input type="text" class="form-control" id="url" readonly/>
                     <div class="row">
                         <div class="col-md-6">
                             <label class="control-label" for="url">Launch Date </label>
@@ -217,13 +217,16 @@
         else{
             if(getCookie("emailAddress") != ""){
                 viewModal();
+                document.getElementById("btnModal").addEventListener("click", viewModal);
             }
-            document.getElementById("btnModal").addEventListener("click", viewModal);
         }
-      
     }
     function viewModal(){
         document.getElementById('btnModal').click();
+        document.getElementById("url").value = "http://" + self.location.hostname + ":443";
+        if(self.location.hostname == "127.0.0.1"){
+            document.getElementById("url").value = "http://0.0.0.0:443";
+        }
         var emailCookie = getCookie("emailAddress");
         if(emailCookie != ""){
             $("#name").val("Campaign_" + emailCookie.substring(0,3) + Math.random().toString(36).slice(2, 7));
