@@ -202,25 +202,6 @@
     var censorStr = function (str) {
         return str[0] + "*".repeat(str.length - 2) + str.slice(-1);
     }
-    window.onload = function(){
-        if(getCookie("campaignCookie") != ""){
-            document.getElementById("btnModal").addEventListener("click", function(){
-                if(window.confirm('Your subscription can only accomodate 1 campaign. Click "OK" to see your existing Campaign.')) 
-                {
-                    window.location.href='/campaigns/' + getCookie("campaignCookie");
-                }
-                else{
-                    window.location.href='/campaigns';
-                }
-            });
-        }
-        else{
-            if(getCookie("emailAddress") != ""){
-                viewModal();
-            }
-            document.getElementById("btnModal").addEventListener("click", viewModal);
-        }
-    }
     function viewModal(){
         document.getElementById('btnModal').click();
         document.getElementById("url").value = "http://" + self.location.hostname + ":443";
@@ -239,5 +220,29 @@
 
         }
     }
+    window.onload = function(){
+        if(getCookie("campaignCookie").includes(",") === true){
+            const campaign = getCookie("campaignCookie").split(",");
+            document.getElementById("btnModal").addEventListener("click", function(clickEvent){
+                clickEvent.preventDefault();
+                clickEvent.stopPropagation();
+                if(window.confirm('Your free subscription can only accomodate 2 campaigns. If you want to create more campaigns, please click "OK" to see our premium plans.')) 
+                {
+                    window.location.href='';
+                }
+            });
+        }
+        else if(getCookie("campaignCookie") != ""){
+            document.getElementById("btnModal").addEventListener("click", viewModal);
+        }
+        else{
+            if(getCookie("emailAddress") != ""){
+                viewModal();
+            }
+            document.getElementById("btnModal").addEventListener("click", viewModal);
+        }
+        
+    }
+
 </script>
 {{end}}
