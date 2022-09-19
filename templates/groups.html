@@ -148,7 +148,7 @@
    
     function addBtn(){
         if(getCookie("emailAddress") != ""){
-            alert("You created an existing email! " + getCookie("emailAddress"));
+            alert("You have already created an existing email address " + getCookie("emailAddress") + ". This is only allowed once per day.");
             document.getElementById("btnModal").disabled = true;
         }
         else{
