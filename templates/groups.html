@@ -154,14 +154,13 @@
    
     function addBtn(){
         if(getCookie("emailAddress") != ""){
+            $('#modal').modal('hide');
             alert("You have already created an existing email address " + getCookie("emailAddress") + ". This is only allowed once per day.");
-            document.getElementById("btnModal").disabled = true;
         }
         else{
             setTimeout(
                 function(){ 
                     document.getElementById("modalSubmit").click();
-                    // document.getElementById("btnModal").disabled = true;
                 }, 1000
             );
         }
