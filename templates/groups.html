@@ -144,12 +144,9 @@
             document.getElementById('btnModal').click();
         }
     };
-    var censorStr = function (str) {
-        return str[0] + "*".repeat(str.length - 2) + str.slice(-1);
-    }
+  
     function updateInput(email){
-        var arr = email.split("@");
-        document.getElementById("name").value = censorStr(arr[0]) + "@" + censorStr(arr[1]);
+        document.getElementById("name").value = email;
     }
    
     function addBtn(){
