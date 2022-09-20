@@ -138,7 +138,7 @@ func (as *AdminServer) registerRoutes() {
 	router.HandleFunc("/webhooks", mid.Use(as.Webhooks, mid.RequirePermission(models.PermissionModifySystem), mid.RequireLogin))
 	router.HandleFunc("/impersonate", mid.Use(as.Impersonate, mid.RequirePermission(models.PermissionModifySystem), mid.RequireLogin))
 	router.HandleFunc("/training_sessions", mid.Use(as.TrainingSessions, mid.RequireLogin))
-	router.HandleFunc("/pricing", mid.Use(as.Pricing, as.limiter.Limit))
+	router.HandleFunc("/pricing", mid.Use(as.Pricing, mid.RequireLogin))
 
 	// Create the API routes
 	api := api.NewServer(
