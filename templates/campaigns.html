@@ -200,9 +200,6 @@
 
 <script type="text/javascript">
     if(visitor){
-        var censorStr = function (str) {
-            return str[0] + "*".repeat(str.length - 2) + str.slice(-1);
-        }
         function viewModal(){
             document.getElementById('btnModal').click();
             document.getElementById("url").value = "http://" + self.location.hostname + ":443";
@@ -212,9 +209,7 @@
             var emailCookie = getCookie("emailAddress");
             if(emailCookie != ""){
                 $("#name").val("Campaign_" + emailCookie.substring(0,3) + Math.random().toString(36).slice(2, 7));
-                var arr = emailCookie.split("@");
                 $("#visitor").html(emailCookie);
-                $("#visitor").val(censorStr(arr[0]) + "@" + censorStr(arr[1]));
             }
             else{
                 $("#visitor").html("-- No recipient available --");
