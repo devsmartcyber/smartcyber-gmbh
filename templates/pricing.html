@@ -1,0 +1,145 @@
+{{define "body"}}
+<link rel="stylesheet" href="css/pricing.css">
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <div class="row">
+        <h1 class="page-header">
+            Premium Plans
+        </h1>
+    </div>
+    <!-- <div id="flashes" class="row"></div>
+    <div class="row">
+        <button type="button" class="btn btn-primary" onclick="edit(-1)" data-toggle="modal" data-backdrop="static"
+        data-target="#modal"><i class="fa fa-plus"></i> New Template</button>
+
+    </div>
+    &nbsp;
+    <div id="loading">
+        <i class="fa fa-spinner fa-spin fa-4x"></i>
+    </div>
+    <div id="emptyMessage" class="row" style="display:none;">
+        <div class="alert alert-info">
+            No templates yet. Let's create one!
+        </div>
+    </div>
+    <div class="row">
+        <table id="templateTable" class="table" style="display:none;">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Modified Date</th>
+                    {{if eq .User.Role.Slug "visitor"}}
+                    {{else}}
+                        <th class="col-md-2 no-sort"></th>
+                    {{end}}
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div> -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-6">
+                <div class="pricingTable blue">
+                    <div class="pricingTable-header">
+                        <span class="heading">
+                            <h3>Free Plan</h3>
+                            <span class="subtitle">Lorem ipsum dolor sit<span>
+                        </span>
+                        <span class="price-value">€0 <span> &nbsp;</span></span>
+                    </div>
+                    <div class="pricingContent">
+                        <ul>
+                            <li>1 Email account/day<i class="fa fa-check"></i></li>
+                            <li>2 Campaigns/day <i class="fa fa-check"></i></li>
+                            <li>1 static Email Template <i class="fa fa-check"></i></li>
+                            <li>1 static Capture Pages <i class="fa fa-check"></i></li>
+                        </ul>
+                    </div><!-- /  CONTENT BOX-->
+                    <div class="pricingTable-sign-up">
+                        <a href="#" class="btn btn-block">Current Plan</a>
+                    </div><!-- BUTTON BOX-->
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6">
+                <div class="pricingTable pink">
+                    <div class="pricingTable-header">
+                        <span class="heading">
+                            <h3>Standard</h3>
+                            <span class="subtitle">Lorem ipsum dolor sit</span>
+                        </span>
+                        <span class="price-value">€20 <span>monthly</span></span>
+                    </div>
+                    <div class="pricingContent">
+                        <ul>
+                            <li>5 Email accounts<i class="fa fa-check"></i></li>
+                            <li>20 Campaigns <i class="fa fa-check"></i></li>
+                            <li>3 Email Template <i class="fa fa-check"></i></li>
+                            <li>3 Capture Pages <i class="fa fa-check"></i></li>
+                        </ul>
+                    </div><!-- /  CONTENT BOX-->
+                    <div class="pricingTable-sign-up">
+                        <a href="#" class="btn btn-block">Register</a>
+                    </div><!-- BUTTON BOX-->
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6">
+                <div class="pricingTable orange">
+                    <div class="pricingTable-header">
+                        <span class="heading">
+                            <h3>Business</h3>
+                            <span class="subtitle">Lorem ipsum dolor sit</span>
+                        </span>
+                        <span class="price-value">€30 <span>monthly</span></span>
+                    </div>
+                    <div class="pricingContent">
+                        <ul>
+                            <li>10 Email accounts<i class="fa fa-check"></i></li>
+                            <li>40 Campaigns <i class="fa fa-check"></i></li>
+                            <li>6 Email Template <i class="fa fa-check"></i></li>
+                            <li>6 Capture Pages <i class="fa fa-check"></i></li>
+                            <!-- <li>25 Domains <i class="fa fa-times"></i></li> -->
+                        </ul>
+                    </div><!-- /  CONTENT BOX-->
+                    <div class="pricingTable-sign-up">
+                        <a href="#" class="btn btn-block">Register</a>
+                    </div><!-- BUTTON BOX-->
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6">
+                <div class="pricingTable green">
+                    <div class="pricingTable-header">
+                        <span class="heading">
+                            <h3>VIP</h3>
+                            <span class="subtitle">Lorem ipsum dolor sit</span>
+                        </span>
+                        <span class="price-value">$40 <span>monthly</span></span>
+                    </div>
+                    <div class="pricingContent">
+                        <ul>
+                            <li>15 Email accounts<i class="fa fa-check"></i></li>
+                            <li>100 Campaigns <i class="fa fa-check"></i></li>
+                            <li>10 Email Template <i class="fa fa-check"></i></li>
+                            <li>10 Capture Pages <i class="fa fa-check"></i></li>
+                        </ul>
+                    </div><!-- /  CONTENT BOX-->
+                    <div class="pricingTable-sign-up">
+                        <a href="#" class="btn btn-block">Register</a>
+                    </div><!-- BUTTON BOX-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{end}}
+{{define "scripts"}}
+<script src="/js/src/vendor/ckeditor/ckeditor.js"></script>
+<script src="/js/src/vendor/ckeditor/adapters/jquery.js"></script>
+<script src="/js/dist/app/autocomplete.min.js"></script>
+<script src="/js/dist/app/templates.min.js"></script>
+{{end}}
