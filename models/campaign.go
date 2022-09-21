@@ -114,7 +114,7 @@ var ErrSMTPNotSpecified = errors.New("No sending profile specified")
 var ErrTemplateNotFound = errors.New("Template not found")
 
 // ErrGroupNotFound indicates a group specified by the user does not exist in the database
-var ErrGroupNotFound = errors.New("Group not found")
+var ErrGroupNotFound = errors.New("Recipient not found")
 
 // ErrPageNotFound indicates a page specified by the user does not exist in the database
 var ErrPageNotFound = errors.New("Page not found")
@@ -609,7 +609,7 @@ func PostCampaign(c *Campaign, uid int64) error {
 	return tx.Commit().Error
 }
 
-//DeleteCampaign deletes the specified campaign
+// DeleteCampaign deletes the specified campaign
 func DeleteCampaign(id int64) error {
 	log.WithFields(logrus.Fields{
 		"campaign_id": id,
