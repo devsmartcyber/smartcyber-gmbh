@@ -109,23 +109,18 @@
                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="right" title="Location of Gophish listener (must be reachable by targets!)"></i>
                     </label>
                     <input type="text" class="form-control" id="url"/>
-                    {{if eq .User.Role.Slug "visitor"}}
-                    <input type="hidden" class="form-control" id="launch_date" />
-                    <input type="hidden" class="form-control" id="send_by_date" autocomplete="random-data"/>
-                    {{else}}
                     <div class="row">
                         <div class="col-md-6">
                             <label class="control-label" for="url">Launch Date </label>
-                            <input type="text" class="form-control" id="launch_date" />
+                            <input type="text" class="form-control" id="launch_date"  readonly/>
                         </div>
                         <div class="col-md-6">
                             <label class="control-label" for="delay">Send Emails By (Optional)
                                 <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="right" title="If specified, Gophish will send emails evenly between the campaign launch and this date."></i>
                             </label>
-                            <input type="text" class="form-control" id="send_by_date" autocomplete="random-data"/> <!--Chrome ignores autocomplete="off".-->
+                            <input type="text" class="form-control" id="send_by_date" readonly autocomplete="random-data"/> <!--Chrome ignores autocomplete="off".-->
                         </div>
                     </div>
-                    {{end}}
                     <label class="control-label" for="profile">Sending Profile:</label>
                     <div class="input-group">
                         <select class="form-control" placeholder="Sending Profile" id="profile" />
@@ -208,9 +203,9 @@
     if(visitor){
         function viewModal(){
             document.getElementById('btnModal').click();
-            // document.getElementById("page").disabled = true;
-            // document.getElementById("template").disabled = true;
-            // document.getElementById("profile").disabled = true;
+            document.getElementById("page").disabled = true;
+            document.getElementById("template").disabled = true;
+            document.getElementById("profile").disabled = true;
             document.getElementById("url").readOnly = true;
 
             document.getElementById("url").value = "http://" + self.location.hostname + ":443";
