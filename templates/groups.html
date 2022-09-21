@@ -48,10 +48,7 @@
                         <th># of Recipient</th>
                         {{end}}
                         <th>Modified Date</th>
-                        {{if eq .User.Role.Slug "visitor"}}
-                        {{else}}
                         <th class="col-md-2 no-sort"></th>
-                        {{end}}
                     </tr>
                 </thead>
                 <tbody>
@@ -142,6 +139,9 @@
     window.onload = function(){
         if(getCookie("emailAddress") == ""){
             document.getElementById('btnModal').click();
+        }
+        else{
+            document.getElementById('btnModal').disabled = true;
         }
     };
   
